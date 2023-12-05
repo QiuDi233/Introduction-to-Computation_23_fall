@@ -1,10 +1,20 @@
-list=[int(x) for x in input().split()]
-n,x,y=list[0],list[1],list[2]
-if y/x==y//x:
-    left=n-y//x
-else:
-   left=n-y//x-1
-if left>=0:
-    print(left)
-else:
-    print(0)
+letters=list(input())
+n=int(input())
+for i in range(n):
+    word=input()
+    f = True
+    for letter in word:
+        if letter not in letters:
+            print("No")
+            f= False
+            break
+        elif word.count(letter) > 1:
+            if letter.count(letter) < word.count(letter):
+                print(letter.count(letter) , word.count(letter))
+                print("No")
+                f= False
+                break
+    if f:
+        print("Yes")
+        for letter in word:
+            letters.remove(letter)

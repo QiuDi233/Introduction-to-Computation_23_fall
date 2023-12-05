@@ -1,10 +1,14 @@
-nums = int(input())
-num1  = num3 = 0
-for i in range(1, nums+1):
-    num2 = 0
-    for n in range(2, i+1):
-        if i/n == int(i/n):
-            num2 += i/n
-    if num2 > i:
-        num3 += 1
-print(num3)
+res = {}
+def recursion(n):
+    if n in res:
+        return res[n]
+   
+    if n == 0:
+        return 1
+ 
+    else:
+        result = recursion(n//2) + recursion(n//3)
+        res[n] = result
+        return result
+a=int(input())
+print(recursion(a))

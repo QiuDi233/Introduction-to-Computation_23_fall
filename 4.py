@@ -1,9 +1,11 @@
+def reverse_sort(n):
+    def custom_sort(x):
+        reverse_x = int(str(x)[::-1])
+        return (reverse_x, -x)
 
-numbers_str = input()  
-  
-numbers_list = list(map(int, numbers_str.split()))  
-  
-unique_numbers = sorted(list(set(numbers_list)))  
+    sorted_numbers = sorted(range(1, n + 1), key=custom_sort, reverse=True)
+    return sorted_numbers
 
-for num in unique_numbers:  
-    print(num, end=' ')
+n = int(input())
+result = reverse_sort(n)
+print(' '.join(map(str, result)))
