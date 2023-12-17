@@ -1,25 +1,20 @@
-n=int(input())
-original=[]
-totalist=[]
-wordict={}
-seqdict={}
-for _ in range(n):
-    line=list(map(str,input().split()))
-    original.append(line)
-    for l in line:
-        totalist.append(l)
-for x in totalist:
-    wordict[x]=totalist.count(x)
-seq=list(wordict.items())
-seq.sort(key=lambda x:x[0])
-seq.sort(key=lambda x:x[1])
-num=list(enumerate(seq))
-for s in num:
-    seqdict[s[1][0]]=s[0]
-for a in range(n):
-    linelist=[]
-    for b in range(len(original[a])):
-        original[a][b]=seqdict[original[a][b]]
-        linelist.append(str(original[a][b]))
-        s=' '.join(linelist)
-    print(s)
+n = int(input())
+word_indices = {}
+
+for i in range(n):
+    word = input().strip()
+    if word not in word_indices:
+        word_indices[word] = [i]
+    else:
+        word_indices[word].append(i)
+
+result = []
+
+for word, indices in sorted(word_indices.items()):
+    compressed_indices = [str(indices[0])]
+    for j in range(1, len(indices)):
+        compressed_indices.append(str(indices[j] - indices[j - 1]))
+    result.append(f'{word} : {" ".join(compressed_indices)}')
+
+for line in result:
+    print(line)

@@ -1,14 +1,21 @@
-from collections import Counter
+s = input().strip()
+n = len(s)
+pi = [0]*n
 
-def c_frequency(s, stop_chars):
-    filtered_s = ''.join(char for char in s if char not in stop_chars)
-    char_counts = Counter(filtered_s)
-    sorted_counts = sorted(char_counts.items(), key=lambda x: (-x[1], x[0]))
-    
-    for char, frequency in sorted_counts:
-        print(f"{char} {frequency}")
+j = 0
+for i in range(1, n):
+    while j > 0 and s[i] != s[j]:
+        j = pi[j - 1]
+    if s[i] == s[j]:
+        j += 1
+    pi[i] = j
+bj= []
+k = pi[n - 1]
+while k > 0:
+    bj.append(k)
+    k = pi[k - 1]
 
-s = input()
-t = input()
-
-c_frequency(s, t)
+if len(bj) > 0:
+    print(' '.join(map(str, bj[::-1])))
+else:
+    print('')

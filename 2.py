@@ -1,16 +1,12 @@
-import math
-def f(a,b,x,y):
-    l=math.sqrt((a-x)**2+(b-y)**2)
-    return l
+import re
+lst=[]
 n=int(input())
-l=[]
-l1=[]
-while n>0:
-    a,b=map(float,input().split())
-    l.append([a,b])
-    n-=1
-for i in range(0,len(l)):
-    for j in range(i+1,len(l)):
-        le=f(float(l[i][0]),float(l[i][1]),float(l[j][0]),float(l[j][1]))
-        l1.append(float(le))
-print("%.2f"%max(l1))
+for i in range(n):
+    s=input()
+    s_num=re.findall('<([1-9]\d{0,2}|0)>',s)
+    if len(s_num)>0:
+        lst.append(s_num)
+    else:
+        lst.append(['NONE'])
+for i in lst:
+    print(*i)
