@@ -1,15 +1,13 @@
-try:
-  while True:
-        x=input()
-        if not x:
-            break
-        num = 0
-        while x == x[::-1] and len(x) >= 2:
-            num += 1
-            if len(x) % 2 == 0:
-                x = x[:int(len(x) / 2)]
-            else:
-                x = x[:int((len(x) - 1) / 2)]
-        print(num)
-except:
-    pass
+n = int(input())
+
+students = []
+
+for i in range(n):
+    scores = list(map(int, input().split()))
+    total = sum(scores)
+    students.append((i+1, total, scores[0]))
+
+students.sort(key=lambda x: (-x[1], -x[2], x[0]))
+
+for i in range(5):
+    print(students[i][0], students[i][1])
