@@ -1,31 +1,19 @@
-dict_1={}
-list_a=[]
+mylist=[]
 while True:
-    list_1=input().split()
-    if len(list_1)>0:
-        dict_1[list_1[0]]=list_1[1:]
-        list_2=list_1[1:]
-        for i in list_2:
-            if i.endswith('.py'):
-                list_a.append(i)
-    else:
+    thelist=input().split()
+    if thelist==[]:
         break
-num=len(list_a)
-list_b=[]
-for i in list_a:
-    search=i
-    re=i
-    flag=True
-    while flag:
-        for k in dict_1.keys():
-            for m in dict_1[k]:
-                if m==search:
-                    search=k
-                    re=k+'\\'+re
-                    break
-        if search=='homework':
-            break
-    list_b.append(re)
-for i in list_b:
-    print(i)
-print(str(num))
+    for i in thelist[1:]:
+        mylist.append([thelist[0],i])
+biglist=mylist.copy()
+for i in range(len(mylist)):
+    for j in range(len(mylist)):
+        if mylist[j][-1]==mylist[i][0]:
+            biglist[i]=biglist[j]+biglist[i][1:]
+newlist=[]
+for i in biglist:
+    if i[-1].endswith(".py"):
+        newlist.append(i)
+for i in newlist:
+    print("\\".join(i))
+print(len(newlist))
